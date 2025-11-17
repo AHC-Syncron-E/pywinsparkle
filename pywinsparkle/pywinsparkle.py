@@ -61,7 +61,7 @@ def win_sparkle_cleanup():
 
 def win_sparkle_set_lang(language):
     """ Sets UI language from its Win32 LANGID code.
-    
+
     This function must be called before win_sparkle_init().
     :param language: An int, Language code (LANGID) as created by the MAKELANGID macro
     or returned by e.g. ::GetThreadUILanguage()
@@ -126,6 +126,24 @@ def win_sparkle_set_dsa_pub_pem(dsa_pub_pem):
     dll.win_sparkle_set_dsa_pub_pem.restype = c_int64
     dll.win_sparkle_set_dsa_pub_pem.argtypes = [c_char_p]
     result = dll.win_sparkle_set_dsa_pub_pem(dsa_pub_pem.encode())
+
+    return result
+
+def win_sparkle_set_eddsa_public_key(pub_key_base64):
+    """     Sets EdDSA public key.
+    The key is expected to be a Base64-encoded string.
+    Public key will be used to verify EdDSA signature of the update file.
+    The key will be set only if it contains a valid EdDSA public key.
+    If this function isn't called by the app, public key is obtained from
+    Windows resource named "EdDSAPub" of type "EDDSA".
+    @param pub_key_base64  EdDSA public key in Base64 format.
+    @return  1 if valid EdDSA public key provided, 0 otherwise.
+    @since 0.9.0
+    """
+
+    dll.win_sparkle_set_eddsa_public_key.restype = c_int64
+    dll.win_sparkle_set_eddsa_public_key.argtypes = [c_char_p]
+    result = dll.win_sparkle_set_eddsa_public_key(pub_key_base64.encode())
 
     return result
 

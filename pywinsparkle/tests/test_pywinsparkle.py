@@ -19,6 +19,7 @@ APP_CAST_URL = "http://localhost:" + str(PORT) + "/appcast.xml"
 class MyTestCase(unittest.TestCase):
 
     def setUp(self):
+        import base64
 
         resource = File('./')
         factory = Site(resource)
@@ -28,6 +29,16 @@ class MyTestCase(unittest.TestCase):
         # configure winsparkle
         pywinsparkle.win_sparkle_set_appcast_url(APP_CAST_URL)
         pywinsparkle.win_sparkle_set_app_details(VENDOR, APP_NAME, VERSION)
+
+        # The C++ lib expects a 32-byte key, encoded as Base64.
+        # We'll create a dummy 32-byte key and encode it.
+        dummy_key_bytes = b"\x00" * 32
+        dummy_eddsa_key = base64.b64encode(dummy_key_bytes).decode("ascii")
+
+        # Call the new function and assert it returns 1 (success)
+        result = pywinsparkle.win_sparkle_set_eddsa_public_key(dummy_eddsa_key)
+        self.assertEqual(result, 1, "Failed to set EdDSA public key")
+
         pywinsparkle.win_sparkle_init()
 
     def test_update_available_win_sparkle_check_update_with_ui(self):

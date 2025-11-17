@@ -1,0 +1,56 @@
+"""
+PyWinSparkle: A Python wrapper for the WinSparkle software update library.
+"""
+
+# Import all public functions from the module
+from .pywinsparkle import (
+    win_sparkle_init,
+    win_sparkle_cleanup,
+    win_sparkle_set_lang,
+    win_sparkle_set_appcast_url,
+    win_sparkle_set_app_details,
+    win_sparkle_set_dsa_pub_pem,
+    win_sparkle_set_eddsa_public_key,  # Your new function
+    win_sparkle_set_app_build_version,
+    win_sparkle_set_registry_path,
+    win_sparkle_get_automatic_check_for_updates,
+    win_sparkle_set_automatic_check_for_updates,
+    win_sparkle_set_update_check_interval,
+    win_sparkle_get_update_check_interval,
+    win_sparkle_get_last_check_time,
+    win_sparkle_set_error_callback,
+    win_sparkle_set_can_shutdown_callback,
+    win_sparkle_set_shutdown_request_callback,
+    win_sparkle_set_did_find_update_callback,
+    win_sparkle_set_did_not_find_update_callback,
+    win_sparkle_set_update_cancelled_callback,
+    win_sparkle_check_update_with_ui,
+    win_sparkle_check_update_with_ui_and_install,
+    win_sparkle_check_update_without_ui
+)
+
+__all__ = [
+    'win_sparkle_init',
+    'win_sparkle_cleanup',
+    'win_sparkle_set_lang',
+    'win_sparkle_set_appcast_url',
+    'win_sparkle_set_app_details',
+    'win_sparkle_set_dsa_pub_pem',
+    'win_sparkle_set_eddsa_public_key',
+    'win_sparkle_set_app_build_version',
+    'win_sparkle_set_registry_path',
+    'win_sparkle_get_automatic_check_for_updates',
+    'win_sparkle_set_automatic_check_for_updates',
+    'win_sparkle_set_update_check_interval',
+    'win_sparkle_get_update_check_interval',
+    'win_sparkle_get_last_check_time',
+    'win_sparkle_set_error_callback',
+    'win_sparkle_set_can_shutdown_callback',
+    'win_sparkle_set_shutdown_request_callback',
+    'win_sparkle_set_did_find_update_callback',
+    'win_sparkle_set_did_not_find_update_callback',
+    'win_sparkle_set_update_cancelled_callback',
+    'win_sparkle_check_update_with_ui',
+    'win_sparkle_check_update_with_ui_and_install',
+    'win_sparkle_check_update_without_ui'
+]
